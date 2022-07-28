@@ -4,27 +4,23 @@ import RenderImage from "./RenderImage";
 
 const Page: React.FC<{}> = () => {
     const [image, setImage] = useState<string | null | undefined | ArrayBuffer>(null);
+    const [result, setResult] = useState<any>('');
 
     const getImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-       if (e.target.files == null)
+        if (e.target.files == null) {
             return null;
-        try {
-            let file = e.target.files[0];
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                setImage(reader.result);
-                if (e.target.files == null)
-                    return
-            }
-        } catch (err) {
-            console.log(err);
+        }
+        let file = e.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            setImage(reader.result);
         }
     }
 
-    function ProcessImage(event: React.ChangeEvent<HTMLInputElement>) {
+    const ProcessImage = (event: React.ChangeEvent<HTMLInputElement>) => {
         AnonLog();
-        let file = event.target.files![0]
+        let file = event.target.files![0];
         let reader = new FileReader();
         reader.onload = (function (theFile) {
             return function (e:any) {
@@ -39,9 +35,13 @@ const Page: React.FC<{}> = () => {
                     ]
                 };
                 rekognition.detectFaces(params, function (err, data) {
-                    if (err) console.log(err, err.stack);
+                    if (err) {
+                        console.log(err, err.stack);
+                        setResult(null);
+                    }
                     else {
-                        console.log(data);
+                        console.log(data.FaceDetails![0]);
+                        setResult(data.FaceDetails![0]);
                     }
                 });
             }
@@ -49,7 +49,7 @@ const Page: React.FC<{}> = () => {
         reader.readAsArrayBuffer(file);
     }
 
-    function AnonLog() {
+    const AnonLog = () => {
         AWS.config.region = 'eu-west-2';
         AWS.config.credentials = new AWS.CognitoIdentityCredentials({
             IdentityPoolId: 'eu-west-2:371cdf1c-657e-4e3f-a6a0-3cdcf905bfdc',
@@ -78,7 +78,9 @@ const Page: React.FC<{}> = () => {
                     />
                 </div>
             </div>
-            <RenderImage image={image}/>
+            <RenderImage 
+                image={image}
+            />
         </div>
     )
 }

@@ -35,7 +35,7 @@ const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
                                     width={"500"}
                                     height={"500"}
                                     src={image}
-                                    alt={"image"}
+                                    alt={"face"}
                                 />
                             </div>
                         </div>
