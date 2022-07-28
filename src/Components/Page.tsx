@@ -1,18 +1,31 @@
 import React, {useState} from "react";
 import AWS, {Credentials} from 'aws-sdk' ;
 import RenderImage from "./RenderImage";
+import {itemFaceDetails, resultType} from "./type";
 
 const Page: React.FC<{}> = () => {
     const [image, setImage] = useState<string | null | undefined | ArrayBuffer>(null);
-    const [result, setResult] = useState<any>('');
+    const [result, setResult] = useState<resultType>(null);
 
-    const getImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const getImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        let data = {
+            AgeRange : {
+                Low : 12,
+                High : 20
+            },
+            Beard : {
+                Value : false,
+                Confidence: 92
+            }
+        }
+        let dataTable:itemFaceDetails[] = Object.entries(data);
+        await setResult(dataTable);
         if (e.target.files == null) {
             return null;
         }
-        let file = e.target.files[0];
+        let file = await e.target.files[0];
         const reader = new FileReader();
-        reader.readAsDataURL(file);
+        await reader.readAsDataURL(file);
         reader.onload = () => {
             setImage(reader.result);
         }
@@ -34,14 +47,13 @@ const Page: React.FC<{}> = () => {
                         'ALL',
                     ]
                 };
-                rekognition.detectFaces(params, function (err, data) {
+                rekognition.detectFaces(params, async function (err, data) {
                     if (err) {
                         console.log(err, err.stack);
-                        setResult(null);
                     }
                     else {
-                        console.log(data.FaceDetails![0]);
-                        setResult(data.FaceDetails![0]);
+                        await console.log(data.FaceDetails![0]);
+                        await setResult(Object.entries(data.FaceDetails![0]));
                     }
                 });
             }
@@ -78,8 +90,9 @@ const Page: React.FC<{}> = () => {
                     />
                 </div>
             </div>
-            <RenderImage 
+            <RenderImage
                 image={image}
+                result={result}
             />
         </div>
     )
