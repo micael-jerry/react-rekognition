@@ -8,18 +8,18 @@ const Page: React.FC<{}> = () => {
     const [result, setResult] = useState<resultType>(null);
 
     const getImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        let data = {
-            AgeRange : {
-                Low : 12,
-                High : 20
-            },
-            Beard : {
-                Value : false,
-                Confidence: 92
-            }
-        }
-        let dataTable:itemFaceDetails[] = Object.entries(data);
-        await setResult(dataTable);
+        // let data = {
+        //     AgeRange : {
+        //         Low : 12,
+        //         High : 20
+        //     },
+        //     Beard : {
+        //         Value : false,
+        //         Confidence: 92
+        //     }
+        // }
+        // let dataTable:itemFaceDetails[] = Object.entries(data);
+        // await setResult(dataTable);
         if (e.target.files == null) {
             return null;
         }
@@ -52,7 +52,7 @@ const Page: React.FC<{}> = () => {
                         console.log(err, err.stack);
                     }
                     else {
-                        await console.log(data.FaceDetails![0]);
+                        await console.log(Object.entries(data.FaceDetails![0]));
                         await setResult(Object.entries(data.FaceDetails![0]));
                     }
                 });
@@ -83,9 +83,9 @@ const Page: React.FC<{}> = () => {
                     </p>
                     <input type={"file"} accept={"image/*,.png,.jpg,.jpeg"}
                            className="btn btn-primary"
-                           onChange={ (e: React.ChangeEvent<HTMLInputElement>) => {
+                           onChange={ async (e: React.ChangeEvent<HTMLInputElement>) => {
                                getImage(e);
-                               ProcessImage(e);
+                               await ProcessImage(e);
                            }}
                     />
                 </div>
@@ -95,7 +95,7 @@ const Page: React.FC<{}> = () => {
                 result={result}
             />
         </div>
-    )
+    );
 }
 
 export default Page;

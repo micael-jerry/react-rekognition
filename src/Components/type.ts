@@ -3,8 +3,7 @@ export type itemFaceDetails = [
     {}
 ];
 
-export type resultType = itemFaceDetails[] | null | undefined ;
-
+export type resultType = itemFaceDetails[] | null ;
 
 export type DisplayImageProps = {
     image: string | null | ArrayBuffer | undefined;
