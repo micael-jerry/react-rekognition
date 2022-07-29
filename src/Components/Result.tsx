@@ -1,4 +1,5 @@
 import {resultType} from "./type";
+import React from "react";
 
 const Result: React.FC<{ result: resultType }> = (props) => {
     const {result} = props;
@@ -6,7 +7,7 @@ const Result: React.FC<{ result: resultType }> = (props) => {
         <div className="list-group list-group-flush border-bottom">
             <div className="list-group-item list-group-item-action py-3 lh-tight">
                 {
-                    (result || []).map((item) => 
+                    (result || []).map((item) =>
                         (
                             <>
                                 <div className="d-flex w-100 align-items-center justify-content-between">
