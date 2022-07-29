@@ -3,12 +3,13 @@ import AWS, {Credentials} from "aws-sdk";
 import {imageType, resultType} from "./type";
 
 type InputImageProps = {
-    setImage: (param: imageType) => void;
-    setResult: (param: resultType) => void
+    setImage: (params: imageType) => void;
+    setResult: (params: resultType) => void;
+    changePage?: (params: boolean) => void;
 }
 
 const InputImage: React.FC<InputImageProps> = (props) => {
-    const {setImage, setResult} = props;
+    const {setImage, setResult , changePage} = props;
 
     const getImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files == null) {
@@ -67,6 +68,9 @@ const InputImage: React.FC<InputImageProps> = (props) => {
             <input type={"file"} accept={"image/*,.png,.jpg,.jpeg"}
                    className="btn btn-primary"
                    onChange={async (e: React.ChangeEvent<HTMLInputElement>) => {
+                    if(changePage !== undefined) {
+                        changePage(false);
+                    }
                        await getImage(e);
                        ProcessImage(e);
                    }}

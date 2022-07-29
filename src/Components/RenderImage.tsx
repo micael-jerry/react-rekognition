@@ -1,6 +1,7 @@
 import React from "react";
 import Result from "./Result";
 import {DisplayImageProps} from "./type";
+import '../style/RenderImage.css'
 
 const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
     const {image, result} = props;
@@ -10,9 +11,20 @@ const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
                 ? (
                     <>
                         <hr className="featurette-divider"/>
-                        <div className="row featurette">
-                            <div className="col-md-7 order-md-2">
-                                <h2 className="featurette-heading">Face<span className="text-muted">description</span>
+                        <div className="row">
+                            <div className="col-md-5 text-center">
+                                <img
+                                    className="image bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+                                    width={"500"}
+                                    height={"500"}
+                                    src={image}
+                                    alt={"face"}
+                                />
+                            </div>
+                            <div className="col-md-7">
+                                <h2 className="featurette-heading">
+                                    Face
+                                    <span className="text-muted"> description</span>
                                 </h2>
                                 {
                                     (result === undefined || result === null) ?
@@ -20,26 +32,18 @@ const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
                                             (
                                                 <>
                                                     <div className="px-4 py-5 my-5 text-center">
-                                                        Chargement
+                                                        <div className="d-flex justify-content-center">
+                                                            <div className="spinner-border" role="status"></div>
+                                                        </div>
                                                     </div>
                                                 </>
                                             ) : (
                                                 <>
                                                     <div className="px-4 py-5 my-5 text-center">
-                                                        <h1 className="display-5 fw-bold">Error</h1>
-                                                        <div className="col-lg-6 mx-auto">
-                                                            <p className="lead mb-4">
-                                                                Blocage d’une requête multiorigine (Cross-Origin Request) :
-                                                                la politique
-                                                                « Same Origin » ne permet pas de consulter la ressource
-                                                                distante
-                                                            </p>
-                                                            <div
-                                                                className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                                                                <button type="button"
-                                                                        className="btn btn-outline-secondary btn-lg px-4">Secondary
-                                                                </button>
-                                                            </div>
+                                                        <div className="alert alert-dismissible" role="alert">
+                                                            <h4 className="alert-heading">Network Error</h4>
+                                                            <hr/>
+                                                            <p className="mb-0">The network connection is lost</p>
                                                         </div>
                                                     </div>
                                                 </>
@@ -53,15 +57,6 @@ const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
                                             )
                                         )
                                 }
-                            </div>
-                            <div className="col-md-5 order-md-1">
-                                <img
-                                    className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                                    width={"500"}
-                                    height={"500"}
-                                    src={image}
-                                    alt={"face"}
-                                />
                             </div>
                         </div>
                         <hr className="featurette-divider"/>

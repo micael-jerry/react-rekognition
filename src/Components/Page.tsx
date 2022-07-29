@@ -1,12 +1,16 @@
-import React, {useState} from "react";
 import RenderImage from "./RenderImage";
 import {resultType, imageType} from "./type";
 import InputImage from "./InputImage";
 
-const Page: React.FC<{}> = () => {
-    const [image, setImage] = useState<imageType>(null);
-    const [result, setResult] = useState<resultType>(undefined);
+type pageProps = {
+    image:imageType;
+    setImage: (param: imageType) => void;
+    result: resultType;
+    setResult: (param: resultType) => void;
+}
 
+const Page: React.FC<pageProps> = (props) => {
+    const { image,setImage,result,setResult} = props
     return (
         <div>
             <div className={"container"}>
