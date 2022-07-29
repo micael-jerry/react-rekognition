@@ -28,8 +28,8 @@ const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
                                                         <h1 className="display-5 fw-bold">Error</h1>
                                                         <div className="col-lg-6 mx-auto">
                                                             <p className="lead mb-4">
-                                                            Blocage d’une requête multiorigine (Cross-Origin Request) : la politique 
-                                                            « Same Origin » ne permet pas de consulter la ressource distante
+                                                                Blocage d’une requête multiorigine (Cross-Origin Request) : la politique 
+                                                                « Same Origin » ne permet pas de consulter la ressource distante
                                                             </p>
                                                             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
                                                                 <button type="button" className="btn btn-outline-secondary btn-lg px-4">Secondary</button>

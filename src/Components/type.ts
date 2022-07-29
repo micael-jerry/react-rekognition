@@ -1,4 +1,5 @@
 export type imageType = string | null | undefined | ArrayBuffer;
+
 export type itemFaceDetails = [
     string,
     {}

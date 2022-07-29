@@ -1,14 +1,7 @@
-import React, {useEffect, useState} from "react";
 import {resultType} from "./type";
 
 const Result: React.FC<{ result: resultType }> = (props) => {
     const {result} = props;
-    const [loading ,setLoading] = useState<boolean>(true);
-    useEffect(() => {
-        if(result != null){
-            setLoading(false);
-        }
-    }, [result])
     return (
         <div className="list-group list-group-flush border-bottom">
             <div className="list-group-item list-group-item-action py-3 lh-tight">
