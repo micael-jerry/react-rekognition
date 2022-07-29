@@ -1,31 +1,19 @@
 import React, {useState} from "react";
 import AWS, {Credentials} from 'aws-sdk' ;
 import RenderImage from "./RenderImage";
-import {itemFaceDetails, resultType} from "./type";
+import {resultType,imageType} from "./type";
 
 const Page: React.FC<{}> = () => {
-    const [image, setImage] = useState<string | null | undefined | ArrayBuffer>(null);
-    const [result, setResult] = useState<resultType>(null);
+    const [image, setImage] = useState<imageType>(null);
+    const [result, setResult] = useState<resultType>(undefined);
 
     const getImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        // let data = {
-        //     AgeRange : {
-        //         Low : 12,
-        //         High : 20
-        //     },
-        //     Beard : {
-        //         Value : false,
-        //         Confidence: 92
-        //     }
-        // }
-        // let dataTable:itemFaceDetails[] = Object.entries(data);
-        // await setResult(dataTable);
         if (e.target.files == null) {
             return null;
         }
-        let file = await e.target.files[0];
+        let file = e.target.files[0];
         const reader = new FileReader();
-        await reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
         reader.onload = () => {
             setImage(reader.result);
         }
@@ -49,11 +37,11 @@ const Page: React.FC<{}> = () => {
                 };
                 rekognition.detectFaces(params, async function (err, data) {
                     if (err) {
+                        setResult(null);
                         console.log(err, err.stack);
                     }
                     else {
-                        await console.log(Object.entries(data.FaceDetails![0]));
-                        await setResult(Object.entries(data.FaceDetails![0]));
+                        setResult(Object.entries(data.FaceDetails![0]));
                     }
                 });
             }
@@ -99,3 +87,20 @@ const Page: React.FC<{}> = () => {
 }
 
 export default Page;
+
+
+//------------------------------------------------------------------------------
+    //TEST FUNCTIONS REKOGNITION : OFFLINE
+        // let data = {
+        //     AgeRange : {
+        //         Low : 12,
+        //         High : 20
+        //     },
+        //     Beard : {
+        //         Value : false,
+        //         Confidence: 92
+        //     }
+        // }
+        // let dataTable:itemFaceDetails[] = Object.entries(data);
+        // await setResult(dataTable);
+//------------------------------------------------------------------------------
