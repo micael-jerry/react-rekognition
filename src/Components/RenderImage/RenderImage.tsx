@@ -1,7 +1,7 @@
 import React from "react";
-import Result from "./Result";
-import {DisplayImageProps} from "./type";
-import '../style/RenderImage.css'
+import Result from "../Result/Result";
+import {DisplayImageProps} from "../type";
+import './RenderImage.css'
 
 const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
     const {image, result} = props;
@@ -21,7 +21,7 @@ const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
                                     alt={"face"}
                                 />
                             </div>
-                            <div className="col-md-7">
+                            <div className="scroll-bg col-md-7">
                                 <h2 className="featurette-heading">
                                     Face
                                     <span className="text-muted"> description</span>
@@ -50,8 +50,7 @@ const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
                                             )
                                         : (
                                             (
-                                                <div
-                                                    className="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
+                                                <div className="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
                                                     <Result result={result}/>
                                                 </div>
                                             )

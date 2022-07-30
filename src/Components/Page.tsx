@@ -1,4 +1,4 @@
-import RenderImage from "./RenderImage";
+import RenderImage from "./RenderImage/RenderImage";
 import { pageProps } from "./type";
 import InputImage from "./InputImage";
 import React from "react";
