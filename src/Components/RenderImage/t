@@ -1,0 +1,72 @@
+const [style,setStyle] = useState<any>(null);
+    const [boudingBox,setBoudingBox] = useState<any>(null);
+
+    useEffect(() => {
+        if(typeof result != "undefined" && result != null){
+            setBoudingBox(result![0][1]);
+        }
+    },[result])
+
+    useEffect(() => {
+        if(boudingBox != null) {
+            setStyle({
+                "margin-left": boudingBox.Left * document.getElementById('image-render')!.offsetWidth + "px",
+                "margin-top": boudingBox.Top * document.getElementById('image-render')!.offsetHeight + "px",
+                "width": boudingBox.Width * document.getElementById('image-render')!.offsetWidth + "px",
+                "height": boudingBox.Height * document.getElementById('image-render')!.offsetHeight + "px"
+            })
+        }
+    },[boudingBox])
+
+
+
+
+
+
+{
+                                    (style !== null ?
+                                            ( <div className={"card-face"} style={style}></div>)
+                                            : (<></>)
+                                    )
+                                }
+
+
+
+
+
+
+
+
+
+
+.alert-dismissible {
+    background-color: rgba(228, 90, 90, 0.466);
+}
+
+.image {
+    border-radius: 10px;
+    max-height: 800px;
+}
+
+.content-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container-image{
+    position: absolute;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.card-face {
+    border: 2px solid blue;
+    position: absolute;
+    z-index: 2;
+}
+
