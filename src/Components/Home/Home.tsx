@@ -1,17 +1,9 @@
 import React from "react";
 import InputImage from "../InputImage";
-import { imageType, resultType } from "../type";
-
-type pageProps = {
-    image:imageType;
-    setImage: (param: imageType) => void;
-    result: resultType;
-    setResult: (param: resultType) => void;
-    changePage: (param: boolean) => void;
-}
+import {pageProps} from "../type";
 
 const Home: React.FC<pageProps> = (props) => {
-    const { image,setImage,result,setResult, changePage} = props
+    const { setImage , setResult , changePage} = props
     return(
         <div className="d-flex h-100 text-center text-white bg-dark">
             <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">

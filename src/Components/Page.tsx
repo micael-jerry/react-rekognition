@@ -1,13 +1,8 @@
 import RenderImage from "./RenderImage";
-import {resultType, imageType} from "./type";
+import { pageProps } from "./type";
 import InputImage from "./InputImage";
+import React from "react";
 
-type pageProps = {
-    image:imageType;
-    setImage: (param: imageType) => void;
-    result: resultType;
-    setResult: (param: resultType) => void;
-}
 
 const Page: React.FC<pageProps> = (props) => {
     const { image,setImage,result,setResult} = props

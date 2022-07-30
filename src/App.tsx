@@ -12,11 +12,9 @@ function App() {
     return (
         <>
             {
-                (renderHome === true) ? (
-                    <Home 
-                        image={image}
+                renderHome ? (
+                    <Home
                         setImage={setImage}
-                        result={result}
                         setResult={setResult}
                         changePage={setRenderHome}
                     />
