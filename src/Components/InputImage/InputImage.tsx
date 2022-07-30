@@ -1,6 +1,7 @@
 import React from "react";
 import AWS, {Credentials} from "aws-sdk";
-import {imageType, resultType} from "./type";
+import {imageType, resultType} from "../type";
+import './InputImage.css'
 
 type InputImageProps = {
     setImage: (params: imageType) => void;
@@ -9,7 +10,7 @@ type InputImageProps = {
 }
 
 const InputImage: React.FC<InputImageProps> = (props) => {
-    const {setImage, setResult , changePage} = props;
+    const {setImage, setResult, changePage} = props;
 
     const getImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files == null) {
@@ -63,19 +64,23 @@ const InputImage: React.FC<InputImageProps> = (props) => {
             let sessionToken = AWS.config.credentials?.sessionToken;
         });
     }
+
     return (
-        <>
-            <input type={"file"} accept={"image/*,.png,.jpg,.jpeg"}
-                   className="btn btn-primary"
-                   onChange={async (e: React.ChangeEvent<HTMLInputElement>) => {
-                    if(changePage !== undefined) {
-                        changePage(false);
-                    }
-                       await getImage(e);
-                       ProcessImage(e);
-                   }}
-            />
-        </>
+        <div className={"divInput btn btn-primary"}>
+            <label>
+                Select Image
+                <input type={"file"} accept={"image/*,.png,.jpg,.jpeg"}
+                       onChange={async (e: React.ChangeEvent<HTMLInputElement>) => {
+                           setResult(undefined);
+                           if (changePage !== undefined) {
+                               changePage(false);
+                           }
+                           await getImage(e);
+                           ProcessImage(e);
+                       }}
+                />
+            </label>
+        </div>
     )
 }
 

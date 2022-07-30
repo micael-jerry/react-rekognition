@@ -1,6 +1,6 @@
 import RenderImage from "./RenderImage/RenderImage";
 import { pageProps } from "./type";
-import InputImage from "./InputImage";
+import InputImage from "./InputImage/InputImage";
 import React from "react";
 
 
@@ -10,7 +10,7 @@ const Page: React.FC<pageProps> = (props) => {
         <div>
             <div className={"container"}>
                 <div className="bg-light p-5 rounded">
-                    <h1>AWS REKOGNITION</h1>
+                    <h1>Amazon Rekognition</h1>
                     <p className="lead">
                         Analyze faces
                     </p>
@@ -20,10 +20,12 @@ const Page: React.FC<pageProps> = (props) => {
                     />
                 </div>
             </div>
-            <RenderImage
-                image={image}
-                result={result}
-            />
+            <div className={"container"}>
+                <RenderImage
+                    image={image}
+                    result={result}
+                />
+            </div>
         </div>
     );
 }

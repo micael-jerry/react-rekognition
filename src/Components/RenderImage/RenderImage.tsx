@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Result from "../Result/Result";
 import {DisplayImageProps} from "../type";
 import './RenderImage.css'
 
 const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
     const {image, result} = props;
+    
+
     return (
         <>
             {typeof image === 'string'
@@ -12,19 +14,17 @@ const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
                     <>
                         <hr className="featurette-divider"/>
                         <div className="row">
-                            <div className="col-md-5 text-center">
-                                <img
+                            <div className="col-md-5 content-center">
+                                <img id={"image-render"}
                                     className="image bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                                    width={"500"}
-                                    height={"500"}
                                     src={image}
                                     alt={"face"}
                                 />
                             </div>
-                            <div className="scroll-bg col-md-7">
+                            <div className="col-md-7">
                                 <h2 className="featurette-heading">
                                     Face
-                                    <span className="text-muted"> description</span>
+                                    <span className="text-muted"> details</span>
                                 </h2>
                                 {
                                     (result === undefined || result === null) ?

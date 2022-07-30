@@ -1,0 +1,11 @@
+.divInput {
+    text-align: center;
+}
+
+input {
+    display: none;
+}
+
+label {
+    cursor: pointer;
+}
