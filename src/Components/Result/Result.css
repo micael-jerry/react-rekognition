@@ -1,5 +1,5 @@
 .scroll-div{
-    max-height: 800px;
+    max-height: 700px;
     overflow: hidden;
     overflow-y: scroll ;
 }

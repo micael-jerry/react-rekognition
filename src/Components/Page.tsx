@@ -31,20 +31,3 @@ const Page: React.FC<pageProps> = (props) => {
 }
 
 export default Page;
-
-
-//------------------------------------------------------------------------------
-//TEST FUNCTIONS REKOGNITION : OFFLINE
-// let data = {
-//     AgeRange : {
-//         Low : 12,
-//         High : 20
-//     },
-//     Beard : {
-//         Value : false,
-//         Confidence: 92
-//     }
-// }
-// let dataTable:itemFaceDetails[] = Object.entries(data);
-// await setResult(dataTable);
-//------------------------------------------------------------------------------

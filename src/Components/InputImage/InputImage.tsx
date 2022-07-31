@@ -1,7 +1,8 @@
 import React from "react";
-import AWS, {Credentials} from "aws-sdk";
+import AWS, {AWSError, Credentials} from "aws-sdk";
 import {imageType, resultType} from "../type";
 import './InputImage.css'
+import {DetectFacesResponse} from "aws-sdk/clients/rekognition";
 
 type InputImageProps = {
     setImage: (params: imageType) => void;
@@ -12,7 +13,7 @@ type InputImageProps = {
 const InputImage: React.FC<InputImageProps> = (props) => {
     const {setImage, setResult, changePage} = props;
 
-    const getImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const getImage = (e: React.ChangeEvent<HTMLInputElement>): void | null => {
         if (e.target.files == null) {
             return null;
         }
@@ -24,7 +25,7 @@ const InputImage: React.FC<InputImageProps> = (props) => {
         }
     }
 
-    const ProcessImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const ProcessImage = (event: React.ChangeEvent<HTMLInputElement>): void => {
         AnonLog();
         let file = event.target.files![0];
         let reader = new FileReader();
@@ -40,7 +41,7 @@ const InputImage: React.FC<InputImageProps> = (props) => {
                         'ALL',
                     ]
                 };
-                rekognition.detectFaces(params, async function (err, data) {
+                rekognition.detectFaces(params, function (err: AWSError, data: DetectFacesResponse) {
                     if (err) {
                         setResult(null);
                         console.log(err, err.stack);
@@ -53,12 +54,12 @@ const InputImage: React.FC<InputImageProps> = (props) => {
         reader.readAsArrayBuffer(file);
     }
 
-    const AnonLog = () => {
+    const AnonLog = (): void => {
         AWS.config.region = 'eu-west-2';
         AWS.config.credentials = new AWS.CognitoIdentityCredentials({
             IdentityPoolId: 'eu-west-2:371cdf1c-657e-4e3f-a6a0-3cdcf905bfdc',
         });
-        (AWS.config.credentials as Credentials).get(function () {
+        (AWS.config.credentials as Credentials).get(function (): void {
             let accessKeyId = AWS.config.credentials?.accessKeyId;
             let secretAccessKey = AWS.config.credentials?.secretAccessKey;
             let sessionToken = AWS.config.credentials?.sessionToken;
@@ -84,4 +85,4 @@ const InputImage: React.FC<InputImageProps> = (props) => {
     )
 }
 
-export default InputImage
+export default InputImage;

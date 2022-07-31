@@ -6,51 +6,53 @@ import './RenderImage.css'
 const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
     const {image, result} = props;
 
-    const [style,setStyle] = useState<any>(null);
-    const [boudingBox,setBoudingBox] = useState<any>(null);
+    // TODO : position card face rectification
+    const [style, setStyle] = useState<any>(null);
+    const [boundingBox, setBoundingBox] = useState<any>(null);
 
     useEffect(() => {
-        if(typeof result != "undefined" && result != null){
-            setBoudingBox(result![0][1]);
+        if (typeof result != "undefined" && result != null) {
+            setBoundingBox(result![0][1]);
         }
-    },[result])
+    }, [result])
 
     useEffect(() => {
-        if(boudingBox != null) {
-            let image_render = document.getElementById('image-render')!.offsetWidth ;
+        if (boundingBox != null) {
+            let width = document.getElementById('container-image')!.offsetWidth;
+            let height = document.getElementById('container-image')!.offsetHeight;
             setStyle({
-                "margin-top": boudingBox.Top/2 * image_render + "px",
-                "margin-left": boudingBox.Left/2 * image_render + "px",
-                "width": boudingBox.Width * image_render + "px",
-                "height": boudingBox.Height * image_render + "px"
+                "marginLeft": boundingBox.Left * width + "px",
+                "marginTop": boundingBox.Top * height + "px",
+                "width": boundingBox.Width * width + "px",
+                "height": boundingBox.Height * height + "px"
             })
         }
-    },[boudingBox])
+    }, [boundingBox])
 
     return (
         <>
             {typeof image === 'string'
                 ? (
                     <>
-                        <hr className="featurette-divider"/>
+                        <hr/>
                         <div className="row">
                             <div className="col-md-5 content-center">
-                                <div className={"container-image"}>
+                                <div id={"container-image"} className={"container-image"}>
                                     <img id={"image-render"}
-                                         className="image bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+                                         className="image bd-placeholder-img bd-placeholder-img-lg img-fluid mx-auto"
                                          src={image}
                                          alt={"face"}
                                     />
                                 </div>
                                 {
                                     (style !== null ?
-                                            ( <div className={"card-face"} style={style}></div>)
+                                            (<div className={"card-face"} style={style}></div>)
                                             : (<></>)
                                     )
                                 }
                             </div>
                             <div className="col-md-7">
-                                <h2 className="featurette-heading">
+                                <h2>
                                     Face
                                     <span className="text-muted"> details</span>
                                 </h2>
@@ -78,7 +80,8 @@ const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
                                             )
                                         : (
                                             (
-                                                <div className="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
+                                                <div
+                                                    className="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
                                                     <Result result={result}/>
                                                 </div>
                                             )
@@ -86,7 +89,7 @@ const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
                                 }
                             </div>
                         </div>
-                        <hr className="featurette-divider"/>
+                        <hr/>
                     </>
                 )
                 : (<></>)

@@ -16,7 +16,7 @@ const Result: React.FC<{ result: resultType }> = (props) => {
                                     <h5 className={"mb-2"}>{item[0]}</h5>
                                 </div>
                                 {
-                                    (itemInItems || []).map((itemInItem) => {
+                                    (itemInItems || []).map((itemInItem: [string, any]) => {
                                         if (typeof itemInItem[1] !== "object") {
                                             return (
                                                 <p key={itemInItem[0]}>
