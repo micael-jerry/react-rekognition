@@ -6,15 +6,16 @@ import './RenderImage.css'
 const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
     const {image, result} = props;
 
-    // TODO : position card face rectification
+    // TODO : position card face rectification => 2 ;
     const [style, setStyle] = useState<any>(null);
     const [boundingBox, setBoundingBox] = useState<any>(null);
 
     useEffect(() => {
-        if (typeof result != "undefined" && result != null) {
-            setBoundingBox(result![0][1]);
-        }
-    }, [result])
+            if (typeof result != "undefined" && result != null) {
+                setBoundingBox(result![0][1]);
+            }
+        },
+        [result]);
 
     useEffect(() => {
         if (boundingBox != null) {

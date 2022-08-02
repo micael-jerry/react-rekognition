@@ -27,8 +27,14 @@ const Result: React.FC<{ result: resultType }> = (props) => {
                                         } else {
                                             return (
                                                 <div key={itemInItem[0]} className="col-10 mb-1 small">
-                                                    <small
-                                                        className="text-muted">{JSON.stringify(itemInItem[1])}</small>
+                                                    {
+                                                        Object.entries(itemInItem[1]).map((itemInItemArray) => {
+                                                            console.log(itemInItemArray[0]+ " ====> "+itemInItemArray[1]);
+                                                            return (
+                                                                <p>{itemInItemArray[0]+ " ====> "+itemInItemArray[1]}</p>
+                                                            )
+                                                        })
+                                                    }
                                                 </div>
                                             )
                                         }

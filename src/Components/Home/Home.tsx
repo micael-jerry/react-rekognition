@@ -1,10 +1,10 @@
 import React from 'react';
-import InputImage from '../InputImage/InputImage';
+import Get from '../GetImageAndResult/Get';
 import {pageProps} from '../type';
 import './Home.css';
 
 const Home: React.FC<pageProps> = (props) => {
-    const { setImage , setResult , changePage} = props
+    const { setImage , setResult , changePage} = props;
     return(
         <div className="content-center text-center text-white bg-dark">
             <div className="cover-container p-3 mx-auto flex-column">
@@ -13,7 +13,7 @@ const Home: React.FC<pageProps> = (props) => {
                     <p className="lead">Automate the analysis of your images</p>
                     <p className="lead"></p>
                     <p className="lead">
-                    <InputImage
+                    <Get
                         setImage={setImage}
                         setResult={setResult}
                         changePage={changePage}

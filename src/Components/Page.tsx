@@ -1,6 +1,6 @@
 import RenderImage from "./RenderImage/RenderImage";
 import { pageProps } from "./type";
-import InputImage from "./InputImage/InputImage";
+import Get from "./GetImageAndResult/Get";
 import React from "react";
 
 
@@ -14,7 +14,7 @@ const Page: React.FC<pageProps> = (props) => {
                     <p className="lead">
                         Analyze faces
                     </p>
-                    <InputImage
+                    <Get
                         setImage={setImage}
                         setResult={setResult}
                     />

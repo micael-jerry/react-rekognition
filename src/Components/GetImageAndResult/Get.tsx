@@ -1,16 +1,16 @@
 import React from "react";
 import AWS, {AWSError, Credentials} from "aws-sdk";
 import {imageType, resultType} from "../type";
-import './InputImage.css'
+import './Get.css'
 import {DetectFacesResponse} from "aws-sdk/clients/rekognition";
 
-type InputImageProps = {
+type getImageResultProps = {
     setImage: (params: imageType) => void;
     setResult: (params: resultType) => void;
     changePage?: (params: boolean) => void;
 }
 
-const InputImage: React.FC<InputImageProps> = (props) => {
+const Get: React.FC<getImageResultProps> = (props) => {
     const {setImage, setResult, changePage} = props;
 
     const getImage = (e: React.ChangeEvent<HTMLInputElement>): void | null => {
@@ -31,7 +31,7 @@ const InputImage: React.FC<InputImageProps> = (props) => {
         let reader = new FileReader();
         reader.onload = (function (theFile) {
             return function (e: any) {
-                AWS.config.region = 'eu-west-2';
+                AWS.config.region = process.env.REACT_APP_REGION as string;
                 let rekognition = new AWS.Rekognition();
                 let params = {
                     Image: {
@@ -55,9 +55,9 @@ const InputImage: React.FC<InputImageProps> = (props) => {
     }
 
     const AnonLog = (): void => {
-        AWS.config.region = 'eu-west-2';
+        AWS.config.region = process.env.REACT_APP_REGION as string;
         AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-            IdentityPoolId: 'eu-west-2:371cdf1c-657e-4e3f-a6a0-3cdcf905bfdc',
+            IdentityPoolId: process.env.REACT_APP_POOL_ID as string
         });
         (AWS.config.credentials as Credentials).get(function (): void {
             let accessKeyId = AWS.config.credentials?.accessKeyId;
@@ -85,4 +85,4 @@ const InputImage: React.FC<InputImageProps> = (props) => {
     )
 }
 
-export default InputImage;
+export default Get;
