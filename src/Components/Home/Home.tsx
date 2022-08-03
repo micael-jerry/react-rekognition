@@ -3,8 +3,8 @@ import Get from '../GetImageAndResult/Get';
 import {pageProps} from '../type';
 import './Home.css';
 
-const Home: React.FC<pageProps> = (props) => {
-    const { setImage , setResult , changePage} = props;
+const Home: React.FC<any> = (props) => {
+    const { setImage , setFaceDetails , changePage} = props;
     return(
         <div className="content-center text-center text-white bg-dark">
             <div className="cover-container p-3 mx-auto flex-column">
@@ -15,7 +15,7 @@ const Home: React.FC<pageProps> = (props) => {
                     <p className="lead">
                     <Get
                         setImage={setImage}
-                        setResult={setResult}
+                        setFaceDetails={setFaceDetails}
                         changePage={changePage}
                     />
                     </p>

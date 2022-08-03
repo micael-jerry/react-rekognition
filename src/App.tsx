@@ -6,7 +6,7 @@ import {imageType, resultType} from './Components/type';
 function App() {
     const [renderHome, setRenderHome] = useState<boolean>(true);
     const [image, setImage] = useState<imageType>(null);
-    const [result, setResult] = useState<resultType>(undefined);
+    const [faceDetails,setFaceDetails] = useState<any>(undefined)
 
     return (
         <>
@@ -14,15 +14,15 @@ function App() {
                 renderHome ? (
                     <Home
                         setImage={setImage}
-                        setResult={setResult}
+                        setFaceDetails={setFaceDetails}
                         changePage={setRenderHome}
                     />
                 ) : (
                     <Page
                         image={image}
                         setImage={setImage}
-                        result={result}
-                        setResult={setResult}
+                        faceDetails={faceDetails}
+                        setFaceDetails={setFaceDetails}
                     />
                 )
             }

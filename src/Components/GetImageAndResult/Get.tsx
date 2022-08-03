@@ -4,14 +4,14 @@ import {imageType, resultType} from "../type";
 import './Get.css'
 import {DetectFacesResponse} from "aws-sdk/clients/rekognition";
 
-type getImageResultProps = {
-    setImage: (params: imageType) => void;
-    setResult: (params: resultType) => void;
-    changePage?: (params: boolean) => void;
-}
+// type getImageResultProps = {
+//     setImage: (params: imageType) => void;
+//     setResult: (params: resultType) => void;
+//     changePage?: (params: boolean) => void;
+// }
 
-const Get: React.FC<getImageResultProps> = (props) => {
-    const {setImage, setResult, changePage} = props;
+const Get: React.FC<any> = (props) => {
+    const {setImage, setFaceDetails, changePage} = props;
 
     const getImage = (e: React.ChangeEvent<HTMLInputElement>): void | null => {
         if (e.target.files == null) {
@@ -43,10 +43,10 @@ const Get: React.FC<getImageResultProps> = (props) => {
                 };
                 rekognition.detectFaces(params, function (err: AWSError, data: DetectFacesResponse) {
                     if (err) {
-                        setResult(null);
+                        setFaceDetails(null);
                         console.log(err, err.stack);
                     } else {
-                        setResult(Object.entries(data.FaceDetails![0]));
+                        setFaceDetails(data.FaceDetails);
                     }
                 });
             }
@@ -72,7 +72,7 @@ const Get: React.FC<getImageResultProps> = (props) => {
                 Select Image
                 <input type={"file"} accept={"image/*,.png,.jpg,.jpeg"}
                        onChange={async (e: React.ChangeEvent<HTMLInputElement>) => {
-                           setResult(undefined);
+                           setFaceDetails(undefined);
                            if (changePage !== undefined) {
                                changePage(false);
                            }
