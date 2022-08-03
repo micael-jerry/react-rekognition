@@ -1,16 +1,16 @@
 import React from "react";
 import AWS, {AWSError, Credentials} from "aws-sdk";
-import {imageType, resultType} from "../type";
+import {faceDetailsType, imageType} from "../type";
 import './Get.css'
 import {DetectFacesResponse} from "aws-sdk/clients/rekognition";
 
-// type getImageResultProps = {
-//     setImage: (params: imageType) => void;
-//     setResult: (params: resultType) => void;
-//     changePage?: (params: boolean) => void;
-// }
+type getImageResultProps = {
+    setImage: (params: imageType) => void;
+    setFaceDetails: (params: faceDetailsType) => void;
+    changePage?: (params: boolean) => void;
+}
 
-const Get: React.FC<any> = (props) => {
+const Get: React.FC<getImageResultProps> = (props) => {
     const {setImage, setFaceDetails, changePage} = props;
 
     const getImage = (e: React.ChangeEvent<HTMLInputElement>): void | null => {

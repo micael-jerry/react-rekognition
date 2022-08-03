@@ -4,40 +4,39 @@ import Get from "./GetImageAndResult/Get";
 import React, {useEffect, useState} from "react";
 
 
-const Page: React.FC<any> = (props) => {
+const Page: React.FC<pageProps> = (props) => {
     const {image, setImage, faceDetails, setFaceDetails} = props;
     const [result, setResult] = useState<any>(undefined);
-    const [num,setNum] = useState<number>(0);
+    const [num, setNum] = useState<number>(0);
 
     useEffect(() => {
         setNum(0);
         handleChangeResult(0);
-    },[faceDetails]);
+    }, [faceDetails]);
 
     useEffect(() => {
         handleChangeResult(num);
-    },[num])
+    }, [num])
 
-    function handleChangeResult(n: number): void {
-        if(faceDetails === undefined){
+    const handleChangeResult = (n: number): void => {
+        if (faceDetails === undefined) {
             setResult(undefined);
-        }
-        else if(faceDetails === null) {
+        } else if (faceDetails === null) {
             setResult(null);
-        }
-        else {
+        } else {
             setResult(Object.entries(faceDetails[n]));
         }
     }
 
-    function next():void {
-        if(num+1<faceDetails.length){
-            setNum(num+1);
+    const next = (): void => {
+        if (num + 1 < faceDetails!.length) {
+            setNum(num + 1);
         }
     }
-    function previous():void {
-        if(num-1>=0) {
-            setNum(num-1);
+
+    const previous = (): void => {
+        if (num - 1 >= 0) {
+            setNum(num - 1);
         }
     }
 

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import Result from "../Result/Result";
-import {DisplayImageProps} from "../type";
+import {DisplayImageAndResultProps} from "../type";
 import './RenderImageAndResult.css'
 
-const RenderImageAndResult: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
+const RenderImageAndResult: React.FC<DisplayImageAndResultProps> = (props) => {
     const {image, result} = props;
 
     // TODO : position card face rectification => 2 ;
