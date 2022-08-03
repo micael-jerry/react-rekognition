@@ -4,7 +4,7 @@ import {DisplayImageAndResultProps} from "../type";
 import './RenderImageAndResult.css'
 
 const RenderImageAndResult: React.FC<DisplayImageAndResultProps> = (props) => {
-    const {image, result} = props;
+    const {image, result, previous, next} = props;
 
     // TODO : position card face rectification => 2 ;
     const [style, setStyle] = useState<any>(null);
@@ -56,6 +56,10 @@ const RenderImageAndResult: React.FC<DisplayImageAndResultProps> = (props) => {
                                     Face
                                     <span className="text-muted"> details</span>
                                 </h2>
+                                <div className={"d-flex w-100 align-items-center justify-content-between m-3"}>
+                                    <button className={"btn btn-outline-secondary btn-sm"} onClick={previous}>Previous</button>
+                                    <button className={"btn btn-outline-secondary btn-sm"} onClick={next}>Next</button>
+                                </div>
                                 {
                                     (result === undefined || result === null) ?
                                         (result === undefined) ?

@@ -67,7 +67,7 @@ const Get: React.FC<getImageResultProps> = (props) => {
     }
 
     return (
-        <div className={"divInput btn btn-primary"}>
+        <div className={"divInput btn btn-secondary"}>
             <label>
                 Select Image
                 <input type={"file"} accept={"image/*,.png,.jpg,.jpeg"}

@@ -19,5 +19,7 @@ export type itemFaceDetails = [
 
 export type DisplayImageAndResultProps = {
     image: string | null | ArrayBuffer | undefined;
-    result: resultType
+    result: resultType;
+    previous: () => void;
+    next: () => void;
 };

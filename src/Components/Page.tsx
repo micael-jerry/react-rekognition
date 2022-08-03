@@ -48,8 +48,6 @@ const Page: React.FC<pageProps> = (props) => {
                     <p className="lead">
                         Analyze faces
                     </p>
-                    <button onClick={previous}>previous : {num}</button>
-                    <button onClick={next}>next : {num}</button>
                     <Get
                         setImage={setImage}
                         setFaceDetails={setFaceDetails}
@@ -60,6 +58,8 @@ const Page: React.FC<pageProps> = (props) => {
                 <RenderImageAndResult
                     image={image}
                     result={result}
+                    previous={previous}
+                    next={next}
                 />
             </div>
         </div>
