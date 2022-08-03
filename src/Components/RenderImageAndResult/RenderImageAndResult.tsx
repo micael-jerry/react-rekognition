@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import Result from "../Result/Result";
 import {DisplayImageProps} from "../type";
-import './RenderImage.css'
+import './RenderImageAndResult.css'
 
-const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
+const RenderImageAndResult: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
     const {image, result} = props;
 
     // TODO : position card face rectification => 2 ;
@@ -11,11 +11,10 @@ const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
     const [boundingBox, setBoundingBox] = useState<any>(null);
 
     useEffect(() => {
-            if (typeof result != "undefined" && result != null) {
-                setBoundingBox(result![0][1]);
-            }
-        },
-        [result]);
+        if (typeof result != "undefined" && result != null) {
+            setBoundingBox(result![0][1]);
+        }
+    }, [result]);
 
     useEffect(() => {
         if (boundingBox != null) {
@@ -80,12 +79,10 @@ const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
                                                 </>
                                             )
                                         : (
-                                            (
-                                                <div
-                                                    className="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
-                                                    <Result result={result}/>
-                                                </div>
-                                            )
+                                            <div
+                                                className="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
+                                                <Result result={result}/>
+                                            </div>
                                         )
                                 }
                             </div>
@@ -99,4 +96,4 @@ const RenderImage: React.FC<DisplayImageProps> = (props: DisplayImageProps) => {
     )
 }
 
-export default RenderImage;
+export default RenderImageAndResult;

@@ -1,4 +1,4 @@
-import RenderImage from "./RenderImage/RenderImage";
+import RenderImageAndResult from "./RenderImageAndResult/RenderImageAndResult";
 import { pageProps } from "./type";
 import Get from "./GetImageAndResult/Get";
 import React from "react";
@@ -21,7 +21,7 @@ const Page: React.FC<pageProps> = (props) => {
                 </div>
             </div>
             <div className={"container"}>
-                <RenderImage
+                <RenderImageAndResult
                     image={image}
                     result={result}
                 />
